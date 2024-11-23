@@ -19,3 +19,9 @@ class CategoryForArticle(models.Model):
 
     def __str__(self):
         return self.category_name
+
+
+class LikeForArticle(models.Model):
+    user = models.ForeignKey(User, verbose_name='Пользователь',on_delete=models.CASCADE)
+    article = models.ForeignKey('Article', on_delete=models.PROTECT, null=True)
+    create_at = models.DateTimeField(auto_now_add=True)
