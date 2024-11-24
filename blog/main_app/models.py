@@ -8,7 +8,7 @@ class Article(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
     category = models.ForeignKey('CategoryForArticle', on_delete=models.PROTECT, null=True)
-    user = models.ForeignKey(User, verbose_name='Пользователь',on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -22,6 +22,6 @@ class CategoryForArticle(models.Model):
 
 
 class LikeForArticle(models.Model):
-    user = models.ForeignKey(User, verbose_name='Пользователь',on_delete=models.CASCADE)
-    article = models.ForeignKey('Article', on_delete=models.PROTECT, null=True)
+    user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
+    article = models.ForeignKey('Article', on_delete=models.CASCADE, null=True)
     create_at = models.DateTimeField(auto_now_add=True)

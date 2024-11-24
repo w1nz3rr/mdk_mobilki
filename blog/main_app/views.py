@@ -6,9 +6,21 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from rest_framework.views import APIView
 
 
-from .models import Article, LikeForArticle
-from .serializers import ArticleSerializer, LikeForArticleSerializer
+from .models import Article, LikeForArticle, User
+from .serializers import ArticleSerializer, LikeForArticleSerializer, UserSerializer
 from .permissions_for_articles import *
+from .permissions_for_users import *
+
+
+class UserAPIList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserApiUpdate(generics.UpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (IsCurrentUserOrOnlyRead, )
 
 
 class ArticleAPIList(generics.ListCreateAPIView):

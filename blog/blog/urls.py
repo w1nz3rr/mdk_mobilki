@@ -5,9 +5,11 @@ from main_app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/users/', UserAPIList.as_view()),
+    path('api/users/<int:pk>/', UserApiUpdate.as_view()),
     path('api/articles/', ArticleAPIList.as_view()),
-    path('api/articles/<int:pk>', ArticleAPIUpdate.as_view()),
-    path('api/articlesdelete/<int:pk>', ArticleDestroyAPIView.as_view()),
+    path('api/articles/<int:pk>/', ArticleAPIUpdate.as_view()),
+    path('api/articlesdelete/<int:pk>/', ArticleDestroyAPIView.as_view()),
     path('api/auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken')),
     path('api/articles/<int:article_id>/like/', LikeArticleView.as_view()),

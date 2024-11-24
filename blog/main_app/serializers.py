@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Article, LikeForArticle
+from .models import Article, LikeForArticle, User
 
 
 class ArticleSerializer(serializers.ModelSerializer):
@@ -14,3 +14,10 @@ class LikeForArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = LikeForArticle
         fields = ['user', 'article']
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['username', 'is_active', 'date_joined']
